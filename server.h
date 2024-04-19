@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:55:55 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/19 20:13:23 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:24:07 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 typedef struct s_server_state
 {
     int total_bits;
-    
+    char *str;
+    int clinet_pid;
 } t_server_state
 
 #endif

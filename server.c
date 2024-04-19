@@ -6,11 +6,13 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:55:58 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/19 20:12:12 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:24:08 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+
+t_server_state state;
 
 int	main(void)
 {
