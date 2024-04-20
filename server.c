@@ -43,14 +43,14 @@ void	set_sighandler(int to_set, void (*handler)(int), int to_mask)
 
 void handle_sigusr1(int sig)
 {
+	state.is_waiting = 0;
 	*state.ptr = *state.ptr << 1;
 	state.i++;
-	ft_printf("%d %d\n", state.i, 0);
 }
 
 void handle_sigusr2(int sig)
 {
+	state.is_waiting = 0;
 	*state.ptr = (*state.ptr << 1) | 1;
 	state.i++;
-	ft_printf("%d %d\n", state.i, 1);
 }
