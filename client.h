@@ -10,3 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CLIENT_H
+# define CLIENT_H
+
+# define SBYTE 8
+# define USLEEP_N 1000
+
+# include "ft_printf.h"
+# include <unistd.h>
+# include <signal.h>
+
+#endif

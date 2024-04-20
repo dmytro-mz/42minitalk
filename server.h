@@ -13,15 +13,22 @@
 #ifndef SERVER_H
 # define SERVER_H
 
+# define SBYTE 8
+
 # include "ft_printf.h"
 # include <unistd.h>
 # include <signal.h>
+# include <stddef.h>
 
 typedef struct s_server_state
 {
-    int total_bits;
+    int total_byts;
     char *str;
-    int clinet_pid;
-} t_server_state
+    pid_t client_pid;
+    size_t i;
+    char *ptr;
+} t_server_state;
+
+void run_cycle(void);
 
 #endif

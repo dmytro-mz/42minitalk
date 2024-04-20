@@ -12,27 +12,45 @@
 
 #include "server.h"
 
+void	set_sighandler(int to_set, void (*f)(int), int to_mask);
+void	handle_sigusr1(int sig);
+void	handle_sigusr2(int sig);
+
 t_server_state state;
 
 int	main(void)
 {
 	set_sighandler(SIGUSR1, handle_sigusr1, SIGUSR2);
 	set_sighandler(SIGUSR2, handle_sigusr2, SIGUSR1);
-	ft_printf("%d", getpid());
+	ft_printf("PID: %d\n", getpid());
 	while (1)
 	{
-		pause();
+		run_cycle();
 	}
 	return (0);
 }
 
-void	set_sighandler(int to_set, void (*f)(int), int to_mask)
+void	set_sighandler(int to_set, void (*handler)(int), int to_mask)
 {
 	struct sigaction	sa;
 
-	sa.sa_handler = f;
-	sa.sa_flag = 0;
-	sigemptyset(&sa.mask);
-	sigaddset(&sa.mask, to_mask);
+	sa.sa_handler = handler;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, to_mask);
 	sigaction(to_set, &sa, NULL);
+}
+
+void handle_sigusr1(int sig)
+{
+	*state.ptr = *state.ptr << 1;
+	state.i++;
+	ft_printf("%d %d\n", state.i, 0);
+}
+
+void handle_sigusr2(int sig)
+{
+	*state.ptr = (*state.ptr << 1) | 1;
+	state.i++;
+	ft_printf("%d %d\n", state.i, 1);
 }
