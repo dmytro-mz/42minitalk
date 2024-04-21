@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:56:23 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/21 13:06:14 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/21 14:01:58 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CLIENT_H
 
 # ifndef USLEEP_N
-#  define USLEEP_N 100
+#  define USLEEP_N 1000
 # endif
 
 # include "common.h"
