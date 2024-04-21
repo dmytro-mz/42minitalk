@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 13:56:23 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/21 13:06:14 by dmoroz           ###   ########.fr       */
+/*   Created: 2024/04/21 12:53:31 by dmoroz            #+#    #+#             */
+/*   Updated: 2024/04/21 12:56:52 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#ifndef COMMON_H
+# define COMMON_H
 
-# ifndef USLEEP_N
-#  define USLEEP_N 100
-# endif
+# define SBYTE 8
 
-# include "common.h"
-
-typedef struct s_client_state
-{
-	int	is_ack_received;
-	int	is_send_next;
-}		t_client_state;
-
-void	send_int(pid_t receiver, int n, int with_sleep);
-void	send_data_with_sleep(pid_t receiver, char *data, size_t n_bytes);
-void	send_data_with_sig(pid_t receiver, char *data, size_t n_bytes);
+# include "ft_printf.h"
+# include <signal.h>
 
 #endif
