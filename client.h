@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:56:23 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/17 13:56:23 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/21 10:49:51 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SBYTE 8
 # ifndef USLEEP_N
-#  define USLEEP_N 1000
+#  define USLEEP_N 100
 # endif
 
 # include "ft_printf.h"

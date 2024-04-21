@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:56:19 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/17 13:56:25 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/21 10:49:42 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int main(int ac, char *av[])
     }
 	set_sighandler(SIGUSR1, handle_sigusr1);
 	set_sighandler(SIGUSR2, handle_sigusr2);
+    state.is_send_next = 0;
     send_int(pid, getpid(), 1);
     send_int(pid, ft_strlen(av[2]), 0);
     send_data_with_sig(pid, av[2], ft_strlen(av[2]));
+    ft_putendl_fd("Waiting for acknowledge...\n", STDOUT_FILENO);
     while (!state.is_ack_received)
     {
-        ft_putendl_fd("Waiting for acknowledge...\n", STDOUT_FILENO);
-        pause();
+        usleep(10);
     }
 }
 
@@ -63,6 +64,7 @@ void send_data_with_sleep(pid_t receiver, char *data, size_t n_bytes)
     size_t bytes_done;
     int i;
 
+    // ft_printf("Sending data with sleep\n");
     bytes_done = 0;
     while (bytes_done < n_bytes)
     {
@@ -86,19 +88,28 @@ void send_data_with_sig(pid_t receiver, char *data, size_t n_bytes)
     size_t bytes_done;
     int i;
 
+    // ft_printf("Sending data with sig\n");
     bytes_done = 0;
     while (bytes_done < n_bytes)
     {
         i = 0;
         while (i < SBYTE)
         {
-            if (!state.is_send_next)
-                pause();
+            // if (!state.is_send_next){
+            //     ft_printf("Pause...\n");
+            //     pause();
+            //     ft_printf("Pause finished\n");
+            // }
+            // ft_printf("Pause...\n");
+            while (!state.is_send_next)
+                usleep(10);
+            // ft_printf("Pause finished\n");
+            // ft_printf("Set: is_send_next=0\n");
+            state.is_send_next = 0;
             if ((*data >> (SBYTE - i - 1)) & 1)
                 kill(receiver, SIGUSR2);
             else
                 kill(receiver, SIGUSR1);
-            state.is_send_next = 0;
             i++;
         }
         data++;
@@ -118,6 +129,7 @@ void	set_sighandler(int to_set, void (*handler)(int))
 
 void handle_sigusr1(int sig)
 {
+    // ft_printf("Server sig received, set: is_send_next=1\n");
 	state.is_send_next = 1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:55:58 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/19 22:24:08 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/21 10:47:46 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 	ft_printf("PID: %d\n", getpid());
 	while (1)
 	{
-		ft_printf("Run main cycle\n");
+		// ft_printf("Run main cycle\n");
 		run_cycle();
 	}
 	return (0);
@@ -56,6 +56,7 @@ void handle_sigusr2(int sig)
 
 void handle_sigusrx_common(int sig)
 {
+	// ft_printf("Sig received\n");
 	(void)sig;
 	if (!(state.i % 8) && state.i > 0)
 			state.ptr++;
