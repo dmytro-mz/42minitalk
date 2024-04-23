@@ -6,7 +6,7 @@
 /*   By: dmoroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:56:19 by dmoroz            #+#    #+#             */
-/*   Updated: 2024/04/21 13:06:03 by dmoroz           ###   ########.fr       */
+/*   Updated: 2024/04/21 15:01:09 by dmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ void	set_sighandler(int to_set, void (*handler)(int))
 
 void	handle_sigusr1(int sig)
 {
+	(void)sig;
 	g_state.is_send_next = 1;
 }
 
 void	handle_sigusr2(int sig)
 {
+	(void)sig;
 	g_state.is_ack_received = 1;
 	ft_putendl_fd("Server acknowledge received!", STDOUT_FILENO);
 }
